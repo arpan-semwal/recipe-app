@@ -13,7 +13,7 @@ router.get("/" , async(req , res) => {
         res.json(response);
 
     }catch(err){
-        console.log(err);
+       res.json(err);
     }
 });
 
@@ -28,7 +28,8 @@ router.post("/" , async(req , res) => {
         res.json(response);
 
     }catch(err){
-        console.log(err);
+        res.json(err);
+    
     }
 });
 
@@ -42,7 +43,7 @@ router.put("/" , async(req , res) => {
         res.json({savedRecipes: user.savedRecipes});
 
     }catch(err){
-        console.log(err);
+        res.json(err);
     }
 });
 
@@ -58,13 +59,13 @@ router.get("/savedRecipes/ids" , async(req , res) => {
 
 router.get("/savedRecipes" , async(req , res) => {
     try{
-        const savedRecipes = await RecipeModel.find({ // to grap savedRecipes where id is inside 
-            _id: {$in : user.savedRecipes},
-        })
         const user = await UserModel.findById(req.body.userID);
-        res.json({savedRecipes: user?.savedRecipes})
+        const savedRecipes = await RecipeModel.find({
+            _id: {$in: user.savedRecipes},
+        })
+        res.json({savedRecipes})
     }catch(err){
-
+        res.json(err);
     }
 })
 

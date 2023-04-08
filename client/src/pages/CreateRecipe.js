@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import axios from 'axios';
-
+// import {useGetUserId} from '../hooks/useGetUserId'
 
 export default function CreateRecipe() {
 
+  // const userID = useGetUserId();
   const [recipe , setRecipe] = useState({
     name:"",
     ingredients:[],
@@ -73,7 +74,7 @@ export default function CreateRecipe() {
 
 
 
-       <button onClick={addIngredients} type='submit'>Add Ingredients</button>
+       <button onClick={addIngredients} type='button'>Add Ingredients</button>
        
 
         <label htmlFor='instructions'>Instructions</label>
@@ -90,9 +91,11 @@ export default function CreateRecipe() {
         name='imageUrl'
         onChange={handleChange}
         />
-        <label htmlFor='cookingT
-        ime'>Cooking Time </label>
-        <input type='number' id="cookingTime" name='cookingTime' onChange={handleChange}/>
+        <label htmlFor='cookingTime'>Cooking Time </label>
+        <input type='number' 
+        id="cookingTime"
+        name='cookingTime' 
+        onChange={handleChange}/>
 
         <button  type='submit'>CreateRecipe</button>
       </form>
