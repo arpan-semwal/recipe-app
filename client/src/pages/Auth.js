@@ -16,7 +16,7 @@ export const Auth =() =>{
 const Login = () => {
     const [username , setUserName] = useState("");
     const [password , setPassword] = useState("");
-    const [_ , setCookies] = useCookies(["auth-token"])
+    const [_ , setCookies] = useCookies(["access_token"]);
 
     const navigate = useNavigate();
 

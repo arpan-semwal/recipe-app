@@ -2,12 +2,16 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 import axios from 'axios';
 import { useGetUserId } from '../hooks/useGetUserId';
-
+import{ useCookies} from "react-cookie";
 
 
 export default function Home() {
   const [recipes , setRecipes] = useState([]);
   const [savedRecipes , setSavedRecipes] = useState([]);
+  const [cookies ] = useCookies(["access_token"]);
+
+
+
   const userID = useGetUserId();
     useEffect(() => {
       const fetchRecipe = async() => {
@@ -34,7 +38,7 @@ export default function Home() {
       fetchRecipe();
       fetchSavedRecipe();
 
-    },[])
+    })
 
 
     const saveRecipe = async(recipeID) => {
@@ -42,7 +46,7 @@ export default function Home() {
           const response = await axios.put("http://localhost:3001/recipes" , {
            userID, 
            recipeID
-          });
+          } );
         setSavedRecipes(response.data.savedRecipes);
       }catch(err){
         console.log("hello");
@@ -50,7 +54,7 @@ export default function Home() {
     };
 
 
-    const isRecipeSaved = (id) => savedRecipes.includes(id);
+    const isRecipeSaved = (id) =>  savedRecipes && savedRecipes.includes(id);
 
 
 
@@ -73,7 +77,7 @@ export default function Home() {
             <div className='instruction'>
               <p>{recipe.instruction}</p>
             </div>
-            <img src={recipe.imageUrl} alt={recipe.name}/>
+            <img src={recipe.imageUrl} alt={recipe.sname}/>
             <p>Cooking Time : {recipe.cookingTime}</p>
           </li>
           );

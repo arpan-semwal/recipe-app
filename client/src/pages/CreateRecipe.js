@@ -45,7 +45,9 @@ export default function CreateRecipe() {
     e.preventDefault();
    
     try{
-      await axios.post("http://localhost:3001/recipes" , recipe);
+      await axios.post("http://localhost:3001/recipes" , recipe,{
+        
+      });
       navigate("/");
       alert("created recipe");
     }catch(err){
