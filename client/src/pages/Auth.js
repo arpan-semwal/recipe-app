@@ -16,7 +16,7 @@ export const Auth =() =>{
 const Login = () => {
     const [username , setUserName] = useState("");
     const [password , setPassword] = useState("");
-    const [_ , setCookies] = useCookies(["access_token"]);
+    const [_, setCookies] = useCookies(["access_token"]);
 
     const navigate = useNavigate();
 
@@ -30,7 +30,7 @@ const Login = () => {
             });
 
 
-            setCookies("auth-token" , response.data.token);
+            setCookies("setCookies" , response.data.token);
             window.localStorage.setItem("userID" , response.data.userID);
            navigate("/");
 
