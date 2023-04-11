@@ -32,12 +32,12 @@ router.post("/login" , async(req  , res) => {
     //comparing password , once the password has been hashed it acannot be unhashed 
     const isPasswordValid = await bcrypt.compare(password , user.password);
 
-    if(!user){
+    if(!isPasswordValid){
         return res.json({message:"Username or password is not correct"});
     }
 
     //create token 
-    const token = jwt.sign({id: user.id},"secret");
+    const token = jwt.sign({id: user._id},"secret");
     res.json({token , userID: user._id})
 
 

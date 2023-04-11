@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 import axios from 'axios';
 import { useGetUserId } from '../hooks/useGetUserId';
-
+import './SavedRecipe.css'
 
 
 export default function SavedRecipes() {
@@ -29,22 +29,27 @@ export default function SavedRecipes() {
 
 
     return(
-      <div>
-        <h2>Saved Recipes</h2>
+    
+      <div className='back'>
+        <h1>Saved Recipes</h1>
         <ul>
          {
          savedRecipes?.map((recipe) => {
           return(
             <li key={recipe._id}>
-            
-            <div>
+            <div className='container'>
+              <div>            
+            <div className='center'>
               <h2>{recipe.name}</h2>
             </div>
             <div className='instruction'>
               <p>{recipe.instruction}</p>
             </div>
-            <img src={recipe.imageUrl} alt={recipe.name}/>
+               
+            <img className='image' src={recipe.imageUrl} alt={recipe.name}/>
             <p>Cooking Time : {recipe.cookingTime}</p>
+            </div>
+            </div>
           </li>
           );
       
@@ -52,6 +57,7 @@ export default function SavedRecipes() {
          })}
         </ul>
       </div>
+      
     );
 
 }

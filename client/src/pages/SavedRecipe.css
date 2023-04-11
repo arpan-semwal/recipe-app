@@ -1,0 +1,46 @@
+.back{
+    background-color: black;
+}
+
+
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    font-size: 55px;
+    width: 600px;
+    height: 600px;
+    border: 1px solid #ccc;
+  
+    padding: 40px 40px 40px 40px;
+    margin: auto;
+    background-color: white;
+   
+
+}
+
+.instruction{
+    font-size: 30px;
+}
+
+
+.container h2{
+    font-size: 30px;
+}
+
+
+.container p {
+    
+    font-size: 20px;
+    font-weight: bold;
+}
+.image{
+    max-width:90%;;
+    max-height: 90%;
+}
+
+h2{
+    font-size: 20px;
+}

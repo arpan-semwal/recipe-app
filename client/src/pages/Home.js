@@ -2,13 +2,15 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 import axios from 'axios';
 import { useGetUserId } from '../hooks/useGetUserId';
-import{ useCookies} from "react-cookie";
+import { useCookies } from 'react-cookie';
+
 
 
 export default function Home() {
   const [recipes , setRecipes] = useState([]);
   const [savedRecipes , setSavedRecipes] = useState([]);
-  const [cookies ] = useCookies(["access_token"]);
+  const [cookies, ] = useCookies(["access_token"]);
+
 
 
 
@@ -46,7 +48,7 @@ export default function Home() {
           const response = await axios.put("http://localhost:3001/recipes" , {
            userID, 
            recipeID
-          } );
+          }, {headers:{authorization: cookies.access_token}} );
         setSavedRecipes(response.data.savedRecipes);
       }catch(err){
         console.log("hello");
@@ -77,7 +79,7 @@ export default function Home() {
             <div className='instruction'>
               <p>{recipe.instruction}</p>
             </div>
-            <img src={recipe.imageUrl} alt={recipe.sname}/>
+            <img src={recipe.imageUrl} alt={recipe.name}/>
             <p>Cooking Time : {recipe.cookingTime}</p>
           </li>
           );
